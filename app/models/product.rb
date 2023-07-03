@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
     has_many :line_items
+    has_many :orders, through: :line_items
     before_destroy :destroy_product_when_not_ref_line_items
     validates :title, :description, :image_url, :presence => true
     validates :title, :uniqueness => true, :length => {:minimum => 10, :message => "title is too short"}
